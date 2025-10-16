@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        .main {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.61);
+        }
+
+        .con {
+            height: 350px;
+            width: 240px;
+            background: black;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-direction: column;
+        }
+
+        /* Mobile screens */
+        @media (max-width: 480px) {
+            .buttons {
+                gap: 5px;
+            }
+
+            button {
+                height: 30px;
+                width: 30px;
+                font-size: 1rem;
+            }
+        }
+
+        #i {
+            width: 170px;
+            height: 40px;
+            border: 0.5px solid gray;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            font-size: 15px;
+            text-align: right;
+            background: none;
+            margin-top: 15px;
+            color: white;
+
+        }
+
+        input::placeholder {
+            color: rgba(128, 128, 128, 0.652);
+
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            height: 40px;
+            width: 40px;
+            border: none;
+            border-radius: 30%;
+            background: #333;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        .a {
+            background: red;
+            font-size: 15px;
+        }
+
+        .a:hover {
+            background: rgba(255, 0, 0, 0.863);
+        }
+
+
+        .operators {
+            color: rgb(102, 0, 255);
+            font-size: 25px;
+
+        }
+
+        .operators:hover {
+            color: rgb(65, 17, 240);
+        }
+
+        .equal {
+            background: rgb(19, 143, 19);
+        }
+
+        .equal:hover {
+            background: rgb(6, 216, 6);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="con">
+            <input type="text" readonly id="i" placeholder="0">
+            <div class="buttons">
+
+                <button class="a" onclick="cal('AC')">AC</button>
+                <button class="a" onclick="cal('DEL')">DEL</button>
+                <button class="operators" onclick="cal('%')">%</button>
+                <button class="operators" onclick="cal('/')">/</button>
+
+                <button onclick="cal('7')">7</button>
+                <button onclick="cal('8')">8</button>
+                <button onclick="cal('9')">9</button>
+                <button class="operators" onclick="cal('*')">*</button>
+
+                <button onclick="cal('4')">4</button>
+                <button onclick="cal('5')">5</button>
+                <button onclick="cal('6')">6</button>
+                <button class="operators" onclick="cal('-')">-</button>
+
+                <button onclick="cal('1')">1</button>
+                <button onclick="cal('2')">2</button>
+                <button onclick="cal('3')">3</button>
+                <button class="operators" onclick="cal('+')">+</button>
+
+                <button onclick="cal('0')">0</button>
+                <button onclick="cal('00')">00</button>
+                <button onclick="cal('.')">.</button>
+                <button class="equal" onclick="cal('=')">=</button>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        let ipr = document.querySelector("input")
+        let s = ""
+        let cal = (ch) => {
+            if (ch == 'AC') {
+                s = ""
+                ipr.value = s
+            }
+            else if (ch == 'DEL') {
+                s = s.slice(0, s.length - 1)
+                ipr.value = s
+            }
+            else if (ch == '=') {
+                try {
+
+                    ipr.value = eval(s)
+                    s = ""
+                }
+                catch {
+                    s = ""
+                    ipr.value = "Error"
+                }
+            }
+            else {
+                s = s + ch
+                ipr.value = s
+            }
+
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
